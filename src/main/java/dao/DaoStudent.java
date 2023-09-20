@@ -1,10 +1,8 @@
 package dao;
 
 import domain.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public class DaoStudent extends AbstractJpaDao{
+public interface DaoStudent extends JpaRepository<Student, Long> {
 
-    public DaoStudent(){
-        setClazz(Student.class);
-    }
 }
