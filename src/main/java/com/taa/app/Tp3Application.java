@@ -1,4 +1,4 @@
-package com.taa.tp;
+package com.taa.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

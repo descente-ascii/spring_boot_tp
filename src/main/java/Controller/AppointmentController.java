@@ -4,6 +4,7 @@ import Service.AppointmentService;
 import domain.Appointment;
 import dto.DtoAppointment;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,13 +12,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/appointments")
 public class AppointmentController {
 
     private AppointmentService appointmentService;
+
+    @RequestMapping("/hello")
+    public String sayHello(){
+        return "Hey";
+    }
 
     @PostMapping
     public ResponseEntity<DtoAppointment> createAppointment(@RequestBody DtoAppointment dtoAppointment){
