@@ -1,4 +1,4 @@
-package domain;
+package com.taa.app.domain;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

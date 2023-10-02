@@ -1,7 +1,9 @@
-package dao;
+package com.taa.app.dao;
 
-import domain.Teacher;
+import com.taa.app.domain.Teacher;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface DaoTeacher extends JpaRepository<Teacher, Long> {
 }

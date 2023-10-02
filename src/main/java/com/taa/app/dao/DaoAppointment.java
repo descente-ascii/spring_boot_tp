@@ -1,7 +1,9 @@
-package dao;
+package com.taa.app.dao;
 
-import domain.Appointment;
+import com.taa.app.domain.Appointment;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface DaoAppointment extends JpaRepository<Appointment, Long> {
 }

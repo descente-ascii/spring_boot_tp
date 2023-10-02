@@ -1,16 +1,19 @@
-package mapper;
+package com.taa.app.mapper;
 
-import domain.Appointment;
-import domain.Student;
-import domain.Teacher;
-import dto.DtoAppointment;
-import dto.StudentDTO;
-import dto.TeacherDTO;
+import com.taa.app.domain.Appointment;
+import com.taa.app.domain.Student;
+import com.taa.app.domain.Teacher;
+import com.taa.app.dto.DtoAppointment;
+import com.taa.app.dto.StudentDTO;
+import com.taa.app.dto.TeacherDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
 
 @Mapper
 public interface EntityMapper {
+
+    EntityMapper MAPPER = Mappers.getMapper(EntityMapper.class);
 
     // Appointment Mapper
     @Mapping(target = "studentId", source = "student.id")

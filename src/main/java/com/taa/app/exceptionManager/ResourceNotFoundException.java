@@ -1,4 +1,4 @@
-package ExceptionManager;
+package com.taa.app.exceptionManager;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseBody;

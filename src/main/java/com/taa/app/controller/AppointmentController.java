@@ -1,11 +1,9 @@
-package Controller;
+package com.taa.app.controller;
 
-import Service.AppointmentService;
-import domain.Appointment;
-import dto.DtoAppointment;
-import lombok.AllArgsConstructor;
+import com.taa.app.service.AppointmentService;
+import com.taa.app.dto.DtoAppointment;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,14 +15,15 @@ import java.util.List;
 @RequestMapping("/api/appointments")
 public class AppointmentController {
 
-    private AppointmentService appointmentService;
 
-    @RequestMapping("/hello")
+    private AppointmentService appointmentService = new AppointmentService();
+
+    @GetMapping("/hello")
     public String sayHello(){
         return "Hey";
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<DtoAppointment> createAppointment(@RequestBody DtoAppointment dtoAppointment){
         DtoAppointment appointment = appointmentService.createAppointment(dtoAppointment);
         return new ResponseEntity<>(appointment, HttpStatus.CREATED);
@@ -54,5 +53,4 @@ public class AppointmentController {
         appointmentService.deleteAppointment(appointmentId);
         return ResponseEntity.ok("Appointment deleted successfully!.");
     }
-
 }

@@ -1,7 +1,5 @@
-package dto;
+package com.taa.app.dto;
 
-import domain.Student;
-import domain.Teacher;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
