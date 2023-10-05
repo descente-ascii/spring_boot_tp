@@ -2,7 +2,6 @@ package com.taa.app.controller;
 
 import com.taa.app.service.AppointmentService;
 import com.taa.app.dto.DtoAppointment;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/appointments")
 public class AppointmentController {
 
 
-    private AppointmentService appointmentService = new AppointmentService();
+    @Autowired
+    private AppointmentService appointmentService ;
 
     @GetMapping("/hello")
     public String sayHello(){

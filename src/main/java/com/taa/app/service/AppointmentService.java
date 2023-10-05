@@ -1,19 +1,17 @@
 package com.taa.app.service;
 
 import com.taa.app.exceptionManager.ResourceNotFoundException;
+import com.taa.app.mapper.AppointmentMapper;
 import com.taa.app.dao.DaoAppointment;
 import com.taa.app.domain.Appointment;
 import com.taa.app.dto.DtoAppointment;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.taa.app.mapper.EntityMapper;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class AppointmentService {
 
     @Autowired
@@ -21,16 +19,16 @@ public class AppointmentService {
 
     public DtoAppointment createAppointment(DtoAppointment dtoAppointment){
         System.out.println("---------------------" + dtoAppointment.getStudentId());
-        Appointment appointment = EntityMapper.MAPPER.appointmentDTOToAppointment(dtoAppointment);
+        Appointment appointment = AppointmentMapper.MAPPER.appointmentDTOToAppointment(dtoAppointment);
         Appointment savedAppointment = daoAppointment.save(appointment);
-        return EntityMapper.MAPPER.appointmentToAppointmentDTO(savedAppointment);
+        return AppointmentMapper.MAPPER.appointmentToAppointmentDTO(savedAppointment);
     }
 
     public DtoAppointment getAppointmentById(Long appointmentId){
         Appointment appointment = daoAppointment.findById(appointmentId).orElseThrow(
                 () -> new ResourceNotFoundException("Appoint does not exist with the given id: " + appointmentId)
         );
-        return EntityMapper.MAPPER.appointmentToAppointmentDTO(appointment);
+        return AppointmentMapper.MAPPER.appointmentToAppointmentDTO(appointment);
     }
 
     public void deleteAppointment(Long appointmentId){
@@ -42,7 +40,7 @@ public class AppointmentService {
 
     public List<DtoAppointment> getAllAppointments(){
         List<Appointment> appointments = daoAppointment.findAll();
-        return appointments.stream().map((appointment) -> EntityMapper.MAPPER.appointmentToAppointmentDTO(appointment))
+        return appointments.stream().map((appointment) -> AppointmentMapper.MAPPER.appointmentToAppointmentDTO(appointment))
                 .collect(Collectors.toList());
     }
 
@@ -54,6 +52,6 @@ public class AppointmentService {
         /*appointment.setStudent(updatedAppointment.getStudentId());
         appointment.setTeacher(updatedAppointment.getTeacherId());*/
         Appointment savedAppointment = daoAppointment.save(appointment);
-        return EntityMapper.MAPPER.appointmentToAppointmentDTO(savedAppointment);
+        return AppointmentMapper.MAPPER.appointmentToAppointmentDTO(savedAppointment);
     }
 }
