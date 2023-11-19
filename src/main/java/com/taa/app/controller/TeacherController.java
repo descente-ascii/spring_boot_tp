@@ -1,5 +1,6 @@
 package com.taa.app.controller;
 
+import com.taa.app.aop.Supervision;
 import com.taa.app.dto.TeacherDTO;
 import com.taa.app.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,13 @@ public class TeacherController {
 
     @PostMapping("/create")
     public ResponseEntity<TeacherDTO> createTeacher(@RequestBody TeacherDTO teacherDTO){
+        TeacherDTO teacher = teacherService.createTeacher(teacherDTO);
+        return new ResponseEntity<>(teacher, HttpStatus.CREATED);
+    }
+
+    @Supervision(dureeMillis = 5)
+    @PostMapping("/createTooLong")
+    public ResponseEntity<TeacherDTO> createTeacherTooLong(@RequestBody TeacherDTO teacherDTO) {
         TeacherDTO teacher = teacherService.createTeacher(teacherDTO);
         return new ResponseEntity<>(teacher, HttpStatus.CREATED);
     }
