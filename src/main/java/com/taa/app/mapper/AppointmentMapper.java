@@ -1,7 +1,7 @@
 package com.taa.app.mapper;
 
 import com.taa.app.domain.Appointment;
-import com.taa.app.dto.DtoAppointment;
+import com.taa.app.dto.AppointmentDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -14,12 +14,12 @@ public interface AppointmentMapper {
     // Appointment Mapper
     @Mapping(target = "studentId", source = "student.id")
     @Mapping(target = "teacherId", source = "teacher.id")
-    DtoAppointment appointmentToAppointmentDTO(Appointment entity);
+    AppointmentDTO appointmentToAppointmentDTO(Appointment entity);
 
     @Mapping(target = "student.id", source = "studentId")
     @Mapping(target = "teacher.id", source = "teacherId")
     @Mapping(target = "id",ignore = true)
-    Appointment appointmentDTOToAppointment(DtoAppointment dto);
+    Appointment appointmentDTOToAppointment(AppointmentDTO dto);
 
 
 

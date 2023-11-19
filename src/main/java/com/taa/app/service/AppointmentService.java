@@ -2,9 +2,9 @@ package com.taa.app.service;
 
 import com.taa.app.exceptionManager.ResourceNotFoundException;
 import com.taa.app.mapper.AppointmentMapper;
-import com.taa.app.dao.DaoAppointment;
+import com.taa.app.dao.AppointmentDAO;
 import com.taa.app.domain.Appointment;
-import com.taa.app.dto.DtoAppointment;
+import com.taa.app.dto.AppointmentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,43 +15,43 @@ import java.util.stream.Collectors;
 public class AppointmentService {
 
     @Autowired
-    private DaoAppointment daoAppointment;
+    private AppointmentDAO appointmentDAO;
 
-    public DtoAppointment createAppointment(DtoAppointment dtoAppointment){
-        System.out.println("---------------------" + dtoAppointment.getStudentId());
-        Appointment appointment = AppointmentMapper.MAPPER.appointmentDTOToAppointment(dtoAppointment);
-        Appointment savedAppointment = daoAppointment.save(appointment);
+    public AppointmentDTO createAppointment(AppointmentDTO appointmentDTO){
+        System.out.println("---------------------" + appointmentDTO.getStudentId());
+        Appointment appointment = AppointmentMapper.MAPPER.appointmentDTOToAppointment(appointmentDTO);
+        Appointment savedAppointment = appointmentDAO.save(appointment);
         return AppointmentMapper.MAPPER.appointmentToAppointmentDTO(savedAppointment);
     }
 
-    public DtoAppointment getAppointmentById(Long appointmentId){
-        Appointment appointment = daoAppointment.findById(appointmentId).orElseThrow(
+    public AppointmentDTO getAppointmentById(Long appointmentId){
+        Appointment appointment = appointmentDAO.findById(appointmentId).orElseThrow(
                 () -> new ResourceNotFoundException("Appoint does not exist with the given id: " + appointmentId)
         );
         return AppointmentMapper.MAPPER.appointmentToAppointmentDTO(appointment);
     }
 
     public void deleteAppointment(Long appointmentId){
-        daoAppointment.findById(appointmentId).orElseThrow(
+        appointmentDAO.findById(appointmentId).orElseThrow(
                 () -> new ResourceNotFoundException("Appoint does not exist with the given id: " + appointmentId)
         );
-        daoAppointment.deleteById(appointmentId);
+        appointmentDAO.deleteById(appointmentId);
     }
 
-    public List<DtoAppointment> getAllAppointments(){
-        List<Appointment> appointments = daoAppointment.findAll();
+    public List<AppointmentDTO> getAllAppointments(){
+        List<Appointment> appointments = appointmentDAO.findAll();
         return appointments.stream().map((appointment) -> AppointmentMapper.MAPPER.appointmentToAppointmentDTO(appointment))
                 .collect(Collectors.toList());
     }
 
-    public DtoAppointment updateAppointment(Long appointmentId, DtoAppointment updatedAppointment){
-        Appointment appointment = daoAppointment.findById(appointmentId).orElseThrow(
+    public AppointmentDTO updateAppointment(Long appointmentId, AppointmentDTO updatedAppointment){
+        Appointment appointment = appointmentDAO.findById(appointmentId).orElseThrow(
                 () -> new ResourceNotFoundException("Appoint does not exist with the given id: "+ appointmentId)
         );
         appointment.setDate(updatedAppointment.getDate());
         /*appointment.setStudent(updatedAppointment.getStudentId());
         appointment.setTeacher(updatedAppointment.getTeacherId());*/
-        Appointment savedAppointment = daoAppointment.save(appointment);
+        Appointment savedAppointment = appointmentDAO.save(appointment);
         return AppointmentMapper.MAPPER.appointmentToAppointmentDTO(savedAppointment);
     }
 }

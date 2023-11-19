@@ -5,7 +5,7 @@ package com.taa.app.dto;
 import java.sql.Date;
 
 
-public class DtoAppointment {
+public class AppointmentDTO {
     private Date date;
     private long studentId;
     private long teacherId;
