@@ -18,7 +18,7 @@ public class StudentService {
     private StudentDAO studentDAO;
 
     public StudentDTO createStudent(StudentDTO studentDTO){
-        System.out.println("---------------------" + studentDTO.getName());
+        System.out.println("---------------------" + studentDTO.getStudentName());
         Student student = StudentMapper.MAPPER.studentDTOToStudent(studentDTO);
         Student savedStudent = studentDAO.save(student);
         return StudentMapper.MAPPER.studentToStudentDTO(savedStudent);
@@ -49,7 +49,7 @@ public class StudentService {
                 () -> new ResourceNotFoundException("Student does not exist with the given id: "+ studentId)
         );
         student.setStudentNumber(updatedStudent.getStudentNumber());
-        student.setName(updatedStudent.getName());
+        student.setName(updatedStudent.getStudentName());
         /*student.setStudent(updatedStudent.getStudentId());
         student.setTeacher(updatedStudent.getTeacherId());*/
         Student savedStudent = studentDAO.save(student);

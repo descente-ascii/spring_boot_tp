@@ -4,11 +4,11 @@ public class StudentDTO {
     private String studentName;
     private int studentNumber;
 
-    public String getName() {
+    public String getStudentName() {
         return this.studentName;
     }
 
-    public void setName(String name) {
+    public void setStudentName(String name) {
         this.studentName = name;
     }
 
