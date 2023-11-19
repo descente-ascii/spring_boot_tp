@@ -10,9 +10,9 @@ import com.taa.app.dto.TeacherDTO;
 @Mapper
 public interface TeacherMapper {
 
-        TeacherMapper MAPPER = Mappers.getMapper(TeacherMapper.class);
+    TeacherMapper MAPPER = Mappers.getMapper(TeacherMapper.class);
 
-        // Teacher Mapper
+    // Teacher Mapper
     @Mapping(target = "teacherName", source = "entity.name")
     @Mapping(target = "teacherLaboratory", source = "entity.laboratory")
     TeacherDTO teacherToTeacherDTO(Teacher entity);
