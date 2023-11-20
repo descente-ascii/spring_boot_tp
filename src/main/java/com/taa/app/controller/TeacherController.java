@@ -6,6 +6,7 @@ import com.taa.app.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,7 +48,8 @@ public class TeacherController {
         return ResponseEntity.ok(teachers);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/update/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<TeacherDTO> updateTeacher(@PathVariable("id") Long teacherId,
                                                             @RequestBody TeacherDTO updatedTeacher){
         TeacherDTO teacherDTO = teacherService.updateTeacher(teacherId, updatedTeacher);
