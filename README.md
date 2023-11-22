@@ -48,8 +48,8 @@ Le back est relié au serveur HSQL contenu à la racine du projet (mvnw pour Lin
 Le serveur écoute sur le **port 8082**. KeyCloak écoute sur le **port 8080**.
 
 ## Requêtes HTTP (Insomnia)
-Pour faciliter vos tests, vous pouvez importer le fichier XXX situé à la racine dans Insomnia. Il contient un
-ensemble de requêtes HTTP couvrant l'ensemble des fonctionnalités de cette API.
+Pour faciliter vos tests, vous pouvez importer dans Insomnia le fichier nommé **Insomnia_SpringBoot_test_requests.json**
+situé à la racine du projet. Il contient un ensemble de requêtes HTTP couvrant l'ensemble des endpoints de cette API.
 
 ## DTO
 Le DTO du Student permet simplement de manipuler un Student contenant seulement son nom et son numéro étudiant.
