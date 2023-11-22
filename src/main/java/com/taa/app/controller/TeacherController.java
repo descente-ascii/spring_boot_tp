@@ -18,11 +18,6 @@ public class TeacherController {
     @Autowired
     private TeacherService teacherService ;
 
-    @GetMapping("/hello")
-    public String sayHello(){
-        return "Hey";
-    }
-
     @PostMapping("/create")
     public ResponseEntity<TeacherDTO> createTeacher(@RequestBody TeacherDTO teacherDTO){
         TeacherDTO teacher = teacherService.createTeacher(teacherDTO);

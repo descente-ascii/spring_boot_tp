@@ -17,10 +17,6 @@ public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService ;
 
-    @GetMapping("/hello")
-    public String sayHello(){
-        return "Hey";
-    }
 
     @PostMapping("/create")
     public ResponseEntity<AppointmentDTO> createAppointment(@RequestBody AppointmentDTO appointmentDTO){

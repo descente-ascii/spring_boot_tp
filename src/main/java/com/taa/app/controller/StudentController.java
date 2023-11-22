@@ -17,11 +17,6 @@ public class StudentController {
     @Autowired
     private StudentService studentService ;
 
-    @GetMapping("/hello")
-    public String sayHello(){
-        return "Hey";
-    }
-
     @PostMapping("/create")
     public ResponseEntity<StudentDTO> createStudent(@RequestBody StudentDTO studentDTO){
         StudentDTO student = studentService.createStudent(studentDTO);
